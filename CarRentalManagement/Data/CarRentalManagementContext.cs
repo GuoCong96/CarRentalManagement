@@ -10,11 +10,6 @@ namespace CarRentalManagement.Data
 {
     public class CarRentalManagementContext : DbContext
     {
-        public CarRentalManagementContext (DbContextOptions<CarRentalManagementContext> options)
-            : base(options)
-        {
-        }
-
         public DbSet<CarRentalManagement.Domain.Make> Make { get; set; } = default!;
         public DbSet<CarRentalManagement.Domain.Model> Model { get; set; } = default!;
         public DbSet<CarRentalManagement.Domain.Colour> Colour { get; set; } = default!;
