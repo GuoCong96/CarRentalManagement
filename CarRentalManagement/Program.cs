@@ -10,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContextFactory<CarRentalManagementContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CarRentalManagementContext") ?? throw new InvalidOperationException("Connection string 'CarRentalManagementContext' not found.")));
 
+// Add the API controller
+builder.Services.AddControllers();
+
 builder.Services.AddQuickGridEntityFrameworkAdapter();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -42,6 +45,9 @@ builder.Services.AddIdentityCore<CarRentalManagementUser>(options => options.Sig
 builder.Services.AddSingleton<IEmailSender<CarRentalManagementUser>, IdentityNoOpEmailSender>();
 
 var app = builder.Build();
+
+// Add the Default controller route
+app.MapDefaultControllerRoute();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
